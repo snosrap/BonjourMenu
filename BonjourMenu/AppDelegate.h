@@ -7,9 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FPNetServiceBrowser.h"
+#import "NSNetService+Additions.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-
-
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, FPNetServiceTypeBrowserDelegate, FPNetServiceBrowserDelegate>
 @end
-

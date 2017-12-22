@@ -7,24 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		821213021FE0703C006E05F8 /* FPNetServiceBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 821213011FE0703C006E05F8 /* FPNetServiceBrowser.m */; };
+		821213041FE073B4006E05F8 /* types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 821213031FE073B4006E05F8 /* types.plist */; };
 		828814231FC4DC19004A5E65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 828814221FC4DC19004A5E65 /* AppDelegate.m */; };
-		828814261FC4DC19004A5E65 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828814251FC4DC19004A5E65 /* ViewController.m */; };
 		828814281FC4DC19004A5E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 828814271FC4DC19004A5E65 /* Assets.xcassets */; };
 		8288142B1FC4DC19004A5E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828814291FC4DC19004A5E65 /* Main.storyboard */; };
 		8288142E1FC4DC19004A5E65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8288142D1FC4DC19004A5E65 /* main.m */; };
+		829DB7DD1FE89125001E6B70 /* Plex.icns in Resources */ = {isa = PBXBuildFile; fileRef = 829DB7DC1FE89124001E6B70 /* Plex.icns */; };
+		82DF60EB1FED908000D18568 /* NSNetService+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DF60EA1FED908000D18568 /* NSNetService+Additions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		821213001FE0703C006E05F8 /* FPNetServiceBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPNetServiceBrowser.h; sourceTree = "<group>"; };
+		821213011FE0703C006E05F8 /* FPNetServiceBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPNetServiceBrowser.m; sourceTree = "<group>"; };
+		821213031FE073B4006E05F8 /* types.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = types.plist; sourceTree = "<group>"; };
 		8288141E1FC4DC19004A5E65 /* BonjourMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonjourMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		828814211FC4DC19004A5E65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		828814221FC4DC19004A5E65 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		828814241FC4DC19004A5E65 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		828814251FC4DC19004A5E65 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		828814271FC4DC19004A5E65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8288142A1FC4DC19004A5E65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8288142C1FC4DC19004A5E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8288142D1FC4DC19004A5E65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8288142F1FC4DC19004A5E65 /* BonjourMenu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BonjourMenu.entitlements; sourceTree = "<group>"; };
+		829DB7DC1FE89124001E6B70 /* Plex.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Plex.icns; sourceTree = "<group>"; };
+		82DF60E91FED908000D18568 /* NSNetService+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNetService+Additions.h"; sourceTree = "<group>"; };
+		82DF60EA1FED908000D18568 /* NSNetService+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNetService+Additions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +65,16 @@
 			children = (
 				828814211FC4DC19004A5E65 /* AppDelegate.h */,
 				828814221FC4DC19004A5E65 /* AppDelegate.m */,
-				828814241FC4DC19004A5E65 /* ViewController.h */,
-				828814251FC4DC19004A5E65 /* ViewController.m */,
+				821213001FE0703C006E05F8 /* FPNetServiceBrowser.h */,
+				821213011FE0703C006E05F8 /* FPNetServiceBrowser.m */,
+				82DF60E91FED908000D18568 /* NSNetService+Additions.h */,
+				82DF60EA1FED908000D18568 /* NSNetService+Additions.m */,
 				828814271FC4DC19004A5E65 /* Assets.xcassets */,
 				828814291FC4DC19004A5E65 /* Main.storyboard */,
 				8288142C1FC4DC19004A5E65 /* Info.plist */,
 				8288142D1FC4DC19004A5E65 /* main.m */,
-				8288142F1FC4DC19004A5E65 /* BonjourMenu.entitlements */,
+				821213031FE073B4006E05F8 /* types.plist */,
+				829DB7DC1FE89124001E6B70 /* Plex.icns */,
 			);
 			path = BonjourMenu;
 			sourceTree = "<group>";
@@ -128,7 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				829DB7DD1FE89125001E6B70 /* Plex.icns in Resources */,
 				828814281FC4DC19004A5E65 /* Assets.xcassets in Resources */,
+				821213041FE073B4006E05F8 /* types.plist in Resources */,
 				8288142B1FC4DC19004A5E65 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,8 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				828814261FC4DC19004A5E65 /* ViewController.m in Sources */,
 				8288142E1FC4DC19004A5E65 /* main.m in Sources */,
+				821213021FE0703C006E05F8 /* FPNetServiceBrowser.m in Sources */,
+				82DF60EB1FED908000D18568 /* NSNetService+Additions.m in Sources */,
 				828814231FC4DC19004A5E65 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,7 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = BonjourMenu/BonjourMenu.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = BonjourMenu/Info.plist;
@@ -281,13 +293,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = BonjourMenu/BonjourMenu.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = BonjourMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.snosrap.BonjourMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
