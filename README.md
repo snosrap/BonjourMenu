@@ -10,15 +10,15 @@ Safari previously included Bonjour webpages and printers in the bookmarks menu, 
 ## Features
 In addition to restoring access to Bonjour webpages and printers, **BonjourMenu** also displays other common services, facilitating access to Mac/Windows file shares, Plex media servers, Raspberry Pis (advertising with Avahi), and IoT devices.
 
-| Type | Service | Launch URL |
-| --- | --- | --- |
-| _http._tcp. | HTTP | `http://<u>:<p>@server:port/<path>` |
-| _afpovertcp._tcp. | Apple File Protocol | `afp://<u>:<p>@server:port/<path>` |
-| _smb._tcp. | Samba | `smb://<u>:<p>@server:port/<path>` |
-| _ssh._tcp. | SSH | `ssh://<u>:<p>@server:port/<path>` |
-| _rfb._tcp. | Remote Framebuffer Protocol (VNC) | `vnc://<u>:<p>@server:port/<path>` |
-| _plexmediasvr._tcp. | Plex | `http://<u>:<p>@server:port/<path>` |
-| _ipp._tcp. | Internet Printing Protocol | `ipp://<u>:<p>@server:port/<path>` |
+| Type | Service | Launch URL | Application | 
+| --- | --- | --- | --- |
+| _http._tcp. | HTTP | `http://<u>:<p>@server:port/<path>` | Safari |
+| _afpovertcp._tcp. | Apple File Protocol | `afp://<u>:<p>@server:port/<path>` | Finder |
+| _smb._tcp. | Samba | `smb://<u>:<p>@server:port/<path>` | Finder |
+| _ssh._tcp. | SSH | `ssh://<u>:<p>@server:port/<path>` | Terminal |
+| _rfb._tcp. | VNC | `vnc://<u>:<p>@server:port/<path>` | Screen&nbsp;Sharing |
+| _plexmediasvr._tcp. | Plex | `http://<u>:<p>@server:port/<path>` | Safari |
+| _ipp._tcp. | Internet Printing Protocol | `ipp://<u>:<p>@server:port/<path>` | Preferences |
 
 Note: the `<u>`, `<p>`, and `<path>` variables are set via the Bonjour TXT record [as specified in the RFC](http://www.dns-sd.org/ServiceTypes.html)
 
