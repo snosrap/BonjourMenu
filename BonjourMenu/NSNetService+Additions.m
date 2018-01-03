@@ -63,7 +63,7 @@
     url.user = self.fp_TXTRecord[@"u"];
     url.password = self.fp_TXTRecord[@"p"];
     url.host = self.hostName;
-    url.port = @(self.port);
+    if(self.port >= 0) { url.port = @(self.port); }
     url.path = self.fp_TXTRecord[@"path"] ?: dict[@"path"];
     return url.URL;
 }
