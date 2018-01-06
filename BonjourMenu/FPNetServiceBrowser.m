@@ -19,6 +19,7 @@
 
 - (void)searchForServicesOfTypes:(NSArray<NSString *> *)types {
     [browsers makeObjectsPerformSelector:@selector(stop)];
+    [services makeObjectsPerformSelector:@selector(stop)];
     browsers = NSMutableArray.array;
     services = NSMutableArray.array;
     [types enumerateObjectsUsingBlock:^(NSString * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -34,7 +35,7 @@
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindService:(NSNetService *)service moreComing:(BOOL)moreComing {
     [services addObject:service];
     service.delegate = self;
-    [service resolveWithTimeout:0];
+    [service resolveWithTimeout:5];
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didRemoveService:(NSNetService *)service moreComing:(BOOL)moreComing {
