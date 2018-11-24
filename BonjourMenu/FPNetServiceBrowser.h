@@ -17,6 +17,7 @@
 @interface FPNetServiceBrowser : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 @property id<FPNetServiceBrowserDelegate> delegate;
 - (void)searchForServicesOfTypes:(NSArray<NSString *> *)types;
+- (void)stop;
 @end
 
 @protocol FPNetServiceTypeBrowserDelegate
@@ -26,4 +27,5 @@
 @interface FPNetServiceTypeBrowser : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 @property id<FPNetServiceTypeBrowserDelegate> delegate;
 - (void)searchForTypes;
+- (void)stop;
 @end

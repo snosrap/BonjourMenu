@@ -47,6 +47,11 @@
     [typeBrowser searchForTypes];
 }
 
+- (void)menuDidClose:(NSMenu *)menu {
+    [typeBrowser stop];
+    [browser stop];
+}
+
 #pragma mark FPNetServiceTypeBrowserDelegate
 
 - (void)receivedTypes:(NSArray<NSString *> *)types {

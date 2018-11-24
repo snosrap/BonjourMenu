@@ -18,8 +18,7 @@
 @implementation FPNetServiceBrowser
 
 - (void)searchForServicesOfTypes:(NSArray<NSString *> *)types {
-    [browsers makeObjectsPerformSelector:@selector(stop)];
-    [services makeObjectsPerformSelector:@selector(stop)];
+    [self stop];
     browsers = NSMutableArray.array;
     services = NSMutableArray.array;
     [types enumerateObjectsUsingBlock:^(NSString * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -28,6 +27,13 @@
         [browser searchForServicesOfType:type inDomain:@""];
         [browsers addObject:browser];
     }];
+}
+
+- (void)stop {
+    [browsers makeObjectsPerformSelector:@selector(stop)];
+    [services makeObjectsPerformSelector:@selector(stop)];
+    browsers = nil;
+    services = nil;
 }
 
 #pragma mark NSNetServiceBrowserDelegate
@@ -65,12 +71,18 @@
 
 @implementation FPNetServiceTypeBrowser
 - (void)searchForTypes {
+    [self stop];
     types = NSMutableSet.set;
-    [browser stop];
     browser = NSNetServiceBrowser.new;
     browser.includesPeerToPeer = YES;
     browser.delegate = self;
     [browser searchForServicesOfType:@"_services._dns-sd._udp." inDomain:@""];
+}
+
+- (void)stop {
+    [browser stop];
+    types = nil;
+    browser = nil;
 }
 
 #pragma mark NSNetServiceBrowserDelegate
