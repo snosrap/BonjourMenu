@@ -16,6 +16,7 @@
 
 @interface FPNetServiceBrowser : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 @property id<FPNetServiceBrowserDelegate> delegate;
+@property NSMutableDictionary<NSString *, NSString *> *deviceMap;
 - (void)searchForServicesOfTypes:(NSArray<NSString *> *)types;
 - (void)stop;
 @end

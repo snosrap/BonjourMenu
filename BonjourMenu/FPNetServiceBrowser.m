@@ -11,6 +11,7 @@
 @interface FPNetServiceBrowser () {
     NSMutableArray<NSNetServiceBrowser *> *browsers;
     NSMutableArray<NSNetService *> *services;
+    NSMutableArray<NSNetService *> *devices;
     NSTimer *timer;
 }
 @end
@@ -21,6 +22,8 @@
     [self stop];
     browsers = NSMutableArray.array;
     services = NSMutableArray.array;
+    devices = NSMutableArray.array;
+    self.deviceMap = NSMutableDictionary.dictionary;
     [types enumerateObjectsUsingBlock:^(NSString * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
         NSNetServiceBrowser *browser = NSNetServiceBrowser.new;
         browser.delegate = self;
@@ -42,6 +45,12 @@
     [services addObject:service];
     service.delegate = self;
     [service resolveWithTimeout:5];
+    if(![[devices valueForKeyPath:@"@distinctUnionOfObjects.name"] containsObject:service.name]) {
+        NSNetService *device = [[NSNetService alloc] initWithDomain:@"local" type:@"_device-info._tcp" name:service.name];
+        device.delegate = self;
+        [device startMonitoring];
+        [devices addObject:device];
+    }
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didRemoveService:(NSNetService *)service moreComing:(BOOL)moreComing {
@@ -59,6 +68,11 @@
         timer = nil;
     }];
     [NSRunLoop.mainRunLoop addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)netService:(NSNetService *)sender didUpdateTXTRecordData:(NSData *)data {
+    [self.deviceMap setObject:sender.fp_model forKey:sender.name];
+    [sender stopMonitoring];
 }
 
 @end
