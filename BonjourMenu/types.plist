@@ -22,6 +22,15 @@
 			<key>typeName</key>
 			<string>AFP</string>
 		</dict>
+		<key>_adisk._tcp.</key>
+		<dict>
+			<key>scheme</key>
+			<string>afp</string>
+			<key>image</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericAirDiskIcon.icns</string>
+			<key>typeName</key>
+			<string>Disk</string>
+		</dict>
 		<key>_smb._tcp.</key>
 		<dict>
 			<key>scheme</key>
@@ -39,6 +48,15 @@
 			<string>com.apple.Terminal</string>
 			<key>typeName</key>
 			<string>SSH</string>
+		</dict>
+		<key>_sftp-ssh._tcp.</key>
+		<dict>
+			<key>scheme</key>
+			<string>sftp</string>
+			<key>image</key>
+			<string>com.apple.Terminal</string>
+			<key>typeName</key>
+			<string>SFTP</string>
 		</dict>
 		<key>_rfb._tcp.</key>
 		<dict>
