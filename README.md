@@ -23,4 +23,4 @@ In addition to restoring access to Bonjour webpages and printers, **BonjourMenu*
 Note: the `<u>`, `<p>`, and `<path>` variables are set via the Bonjour TXT record [as specified in the RFC](http://www.dns-sd.org/ServiceTypes.html)
 
 ## Similar
-[Bonjour Browser](http://tildesoft.com) by Keven Ballard
+[Bonjour Browser](http://tildesoft.com) by Lily Ballard
