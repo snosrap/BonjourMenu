@@ -25,5 +25,13 @@
 
 @interface NSNetService (FPMenuAddtions)
 - (NSMenuItem *)fp_menuItem:(SEL)action;
+- (NSMenu *)fp_submenuItems:(SEL)action;
 @end
 
+@interface NSMenuItem (FPMenuAddtions)
++ (NSMenuItem *)fp_itemWithTitle:(NSString *)title URL:(NSURL *)URL type:(NSString *)type action:(SEL)action;
+@end
+
+@interface NSData (FPMenuAddtions)
+- (NSDictionary *)fp_parseTXTData;
+@end

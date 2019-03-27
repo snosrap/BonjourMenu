@@ -74,12 +74,64 @@
 
 @implementation NSNetService (FPMenuAddtions)
 - (NSMenuItem *)fp_menuItem:(SEL)action {
-    NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@)", self.name, self.fp_typeName] action:action keyEquivalent:@""];
-    NSString *image = [NSUserDefaults.standardUserDefaults objectForKey:@"types"][self.type][@"image"];
+    NSMenuItem *menuItem = [NSMenuItem fp_itemWithTitle:self.name URL:self.fp_URL type:self.type action:action];
+    if([self.type isEqualToString:@"_adisk._tcp."]) {
+        menuItem.submenu = [self fp_submenuItems:action];
+    }
+    return menuItem;
+}
+- (NSMenu *)fp_submenuItems:(SEL)action {
+    NSMenu *submenu = NSMenu.new;
+    [self.fp_dictionaryFromTXTRecordData enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSData * _Nonnull obj, BOOL * _Nonnull stop) {
+        if([key hasPrefix:@"dk"]) {
+            NSDictionary *txtDict = obj.fp_parseTXTData;
+            NSString *name = txtDict[@"adVN"];
+            NSUInteger flags = [txtDict[@"adVF"] unsignedIntegerValue];
+            [@{@"_afpovertcp._tcp.":@(1), @"_smb._tcp.":@(2)} enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
+                if(flags & obj.unsignedIntegerValue) {
+                    NSURLComponents *uc = [NSURLComponents componentsWithURL:self.fp_URL resolvingAgainstBaseURL:NO];
+                    uc.scheme = [NSUserDefaults.standardUserDefaults objectForKey:@"types"][key][@"scheme"];;
+                    uc.path = [NSString stringWithFormat:@"/%@", name];
+                    uc.port = 0;
+                    [submenu addItem:[NSMenuItem fp_itemWithTitle:name URL:uc.URL type:key action:action]];
+                }
+            }];
+        }
+    }];
+    return submenu;
+}
+@end
+
+@implementation NSMenuItem (FPMenuAddtions)
++ (NSMenuItem *)fp_itemWithTitle:(NSString *)title URL:(NSURL *)URL type:(NSString *)type action:(SEL)action {
+    NSString *typeName = [NSUserDefaults.standardUserDefaults objectForKey:@"types"][type][@"typeName"] ?: type;
+    NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@)", title, typeName] action:action keyEquivalent:@""];
+    NSString *image = [NSUserDefaults.standardUserDefaults objectForKey:@"types"][type][@"image"];
     menuItem.image = [NSImage imageNamed:image] ?: [NSFileManager.defaultManager fileExistsAtPath:image] ? [[NSImage alloc] initWithContentsOfFile:image] : [NSFileManager.defaultManager fileExistsAtPath:[NSWorkspace.sharedWorkspace absolutePathForAppBundleWithIdentifier:image]] ? [NSWorkspace.sharedWorkspace iconForFile:[NSWorkspace.sharedWorkspace absolutePathForAppBundleWithIdentifier:image]] : [NSImage imageNamed:NSImageNameNetwork];
     menuItem.image.size = NSMakeSize(16, 16);
-    menuItem.representedObject = self;
-    menuItem.toolTip = [NSString stringWithFormat:@"%@ (%i)\n%@\n%@\n%@\n%@", self.type, (int)self.port, self.hostName, self.fp_ipv4?:@"n/a", self.fp_ipv6?:@"n/a", self.fp_URL];//, [NSNetService dictionaryFromTXTRecordData:self.TXTRecordData]];
+    menuItem.representedObject = URL;
     return menuItem;
+}
+@end
+
+@implementation NSData (FPMenuAddtions)
+- (NSDictionary *)fp_parseTXTData { // http://netatalk.sourceforge.net/wiki/index.php/Bonjour_record_adisk_adVF_values
+    NSScanner *scanner = [NSScanner scannerWithString:[[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding]];
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    NSString *key;
+    id value;
+    while([scanner scanUpToString:@"=" intoString:&key]) {
+        [scanner scanString:@"=" intoString:nil];
+        if([key isEqualToString:@"adVF"]) {
+            unsigned int flags = 0;
+            [scanner scanHexInt:&flags];
+            d[key] = @(flags);
+        } else {
+            [scanner scanUpToString:@"," intoString:&value];
+            d[key] = value;
+        }
+        [scanner scanString:@"," intoString:nil];
+    }
+    return d;
 }
 @end
