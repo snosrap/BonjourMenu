@@ -70,6 +70,7 @@
 - (NSString *)fp_discoveredType {
     return [NSString stringWithFormat:@"%@.%@.", self.name, [self.type componentsSeparatedByString:@"."].firstObject];
 }
+// http://cocoadev.github.io/GettingTheIconOfNetworkMachinesTypes/
 - (NSString *)fp_model {
     // Uses undocumented _LSIconPath. kUTTypeIconFileKey doesn't seem to exist any more and when it does, it lacks `/Contents/Resources/` and isn't found in CoreTypes
     NSString *model = self.fp_TXTRecord[@"model"];

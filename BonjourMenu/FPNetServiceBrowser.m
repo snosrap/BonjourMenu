@@ -45,6 +45,7 @@
     [services addObject:service];
     service.delegate = self;
     [service resolveWithTimeout:5];
+    // https://stackoverflow.com/questions/4309740/how-do-i-obtain-model-name-for-a-networked-device-potentially-using-bonjour/5294662#5294662
     if(![[devices valueForKeyPath:@"@distinctUnionOfObjects.name"] containsObject:service.name]) {
         NSNetService *device = [[NSNetService alloc] initWithDomain:@"local" type:@"_device-info._tcp" name:service.name];
         device.delegate = self;
