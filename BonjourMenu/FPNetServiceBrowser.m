@@ -71,6 +71,7 @@
 
 @implementation FPNetServiceTypeBrowser
 - (void)searchForTypes {
+    if(!!browser) return;
     [self stop];
     types = NSMutableSet.set;
     browser = NSNetServiceBrowser.new;
