@@ -21,6 +21,7 @@
 - (NSString *)fp_typeName;
 - (NSURL *)fp_URL;
 - (NSString *)fp_discoveredType;
+- (NSString *)fp_model;
 @end
 
 @interface NSNetService (FPMenuAddtions)

@@ -70,6 +70,28 @@
 - (NSString *)fp_discoveredType {
     return [NSString stringWithFormat:@"%@.%@.", self.name, [self.type componentsSeparatedByString:@"."].firstObject];
 }
+- (NSString *)fp_model {
+    // Uses undocumented _LSIconPath. kUTTypeIconFileKey doesn't seem to exist any more and when it does, it lacks `/Contents/Resources/` and isn't found in CoreTypes
+    NSString *model = self.fp_TXTRecord[@"model"];
+    if(!model) return nil;
+    CFStringRef uti = CFAutorelease(UTTypeCreatePreferredIdentifierForTag((__bridge CFStringRef)@"com.apple.device-model-code", (__bridge CFStringRef)model, nil));
+    CFDictionaryRef decl = CFAutorelease(UTTypeCopyDeclaration(uti));
+    if(!decl) return nil;
+    CFStringRef icon = CFDictionaryGetValue(decl, @"_LSIconPath");
+    while(icon == nil && uti != nil) {
+        CFArrayRef utis = CFDictionaryGetValue(decl, @"UTTypeConformsTo");
+        for(CFIndex i = 0; i<CFArrayGetCount(utis); i++) {
+            uti = CFArrayGetValueAtIndex(utis, i);
+            decl = CFAutorelease(UTTypeCopyDeclaration(uti));
+            icon = CFDictionaryGetValue(decl, @"_LSIconPath");
+            if(icon != nil) break;
+        }
+    }
+    CFURLRef url = CFAutorelease(UTTypeCopyDeclaringBundleURL(uti));
+    CFStringRef path = CFAutorelease(CFURLCopyPath(url));
+    NSString *iconPath = [(__bridge NSString *)path stringByAppendingPathComponent:(__bridge NSString *)icon];
+    return iconPath;
+}
 @end
 
 @implementation NSNetService (FPMenuAddtions)
