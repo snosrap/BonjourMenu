@@ -99,8 +99,7 @@
 }
 
 - (IBAction)statusItemAction:(NSMenuItem *)sender {
-    NSNetService *service = sender.representedObject;
-    [NSWorkspace.sharedWorkspace openURL:service.fp_URL];
+    [NSWorkspace.sharedWorkspace openURL:sender.representedObject];
 }
 
 @end
