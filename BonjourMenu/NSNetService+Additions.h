@@ -30,6 +30,7 @@
 
 @interface NSMenuItem (FPMenuAddtions)
 + (NSMenuItem *)fp_itemWithTitle:(NSString *)title URL:(NSURL *)URL type:(NSString *)type action:(SEL)action;
+- (void)fp_imageString:(NSString *)image;
 @end
 
 @interface NSData (FPMenuAddtions)

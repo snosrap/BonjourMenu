@@ -107,10 +107,13 @@
     NSString *typeName = [NSUserDefaults.standardUserDefaults objectForKey:@"types"][type][@"typeName"] ?: type;
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@)", title, typeName] action:action keyEquivalent:@""];
     NSString *image = [NSUserDefaults.standardUserDefaults objectForKey:@"types"][type][@"image"];
-    menuItem.image = [NSImage imageNamed:image] ?: [NSFileManager.defaultManager fileExistsAtPath:image] ? [[NSImage alloc] initWithContentsOfFile:image] : [NSFileManager.defaultManager fileExistsAtPath:[NSWorkspace.sharedWorkspace absolutePathForAppBundleWithIdentifier:image]] ? [NSWorkspace.sharedWorkspace iconForFile:[NSWorkspace.sharedWorkspace absolutePathForAppBundleWithIdentifier:image]] : [NSImage imageNamed:NSImageNameNetwork];
-    menuItem.image.size = NSMakeSize(16, 16);
+    [menuItem fp_imageString:image];
     menuItem.representedObject = URL;
     return menuItem;
+}
+- (void)fp_imageString:(NSString *)image {
+    self.image = [NSImage imageNamed:image] ?: [NSFileManager.defaultManager fileExistsAtPath:image] ? [[NSImage alloc] initWithContentsOfFile:image] : [NSFileManager.defaultManager fileExistsAtPath:[NSWorkspace.sharedWorkspace absolutePathForAppBundleWithIdentifier:image]] ? [NSWorkspace.sharedWorkspace iconForFile:[NSWorkspace.sharedWorkspace absolutePathForAppBundleWithIdentifier:image]] : [NSImage imageNamed:NSImageNameNetwork];
+    self.image.size = NSMakeSize(16, 16);
 }
 @end
 
