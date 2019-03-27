@@ -10,5 +10,5 @@
 #import "FPNetServiceBrowser.h"
 #import "NSNetService+Additions.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, FPNetServiceTypeBrowserDelegate, FPNetServiceBrowserDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, FPNetServiceTypeBrowserDelegate, FPNetServiceBrowserDelegate>
 @end

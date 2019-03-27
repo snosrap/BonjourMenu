@@ -31,7 +31,6 @@
     mainStatusItem.button.image.template = YES;
     mainStatusItem.button.image.size = NSMakeSize(16, 16);
     mainStatusItem.menu = NSMenu.new;
-    mainStatusItem.menu.delegate = self;
 
     typeBrowser = FPNetServiceTypeBrowser.new;
     typeBrowser.delegate = self;
@@ -39,17 +38,6 @@
 
     browser = FPNetServiceBrowser.new;
     browser.delegate = self;
-}
-
-#pragma mark NSMenuDelegate
-
-- (void)menuWillOpen:(NSMenu *)menu {
-    [typeBrowser searchForTypes];
-}
-
-- (void)menuDidClose:(NSMenu *)menu {
-    [typeBrowser stop];
-    [browser stop];
 }
 
 #pragma mark FPNetServiceTypeBrowserDelegate
