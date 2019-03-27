@@ -63,6 +63,10 @@
     }];
     [hostNames enumerateObjectsUsingBlock:^(NSString * _Nonnull hostName, NSUInteger idx_hostName, BOOL * _Nonnull stop_hostName) {
         NSMenuItem *menuItem = [mainStatusItem.menu addItemWithTitle:hostName action:nil keyEquivalent:@""];
+        NSString *image = browser.deviceMap[[services filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSNetService *device, NSDictionary<NSString *,id> * _Nullable bindings) {
+            return [device.hostName isEqualToString:hostName] && browser.deviceMap[device.name] != nil;
+        }]].firstObject.name];
+        [menuItem fp_imageString:image];
         menuItem.submenu = NSMenu.new;
         [[[services filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSNetService *service, NSDictionary<NSString *,id> * _Nullable bindings) { return [service.hostName isEqualToString:hostName]; }]] sortedArrayUsingComparator:^NSComparisonResult(NSNetService *obj1, NSNetService *obj2) { return [obj1.type compare:obj2.type] ?: [obj1.name compare:obj2.name]; }] enumerateObjectsUsingBlock:^(NSNetService * _Nonnull service, NSUInteger idx_service, BOOL * _Nonnull stop_service) {
             [mainStatusItem.menu.itemArray.lastObject.submenu addItem:[service fp_menuItem:@selector(statusItemAction:)]];
