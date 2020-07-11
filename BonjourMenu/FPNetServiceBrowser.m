@@ -64,9 +64,9 @@
 - (void)netServiceDidResolveAddress:(NSNetService *)sender {
     if(timer != nil) { return; }
     timer = [NSTimer timerWithTimeInterval:1 repeats:NO block:^(NSTimer * _Nonnull _timer) {
-        [self.delegate receivedServices:services];
-        [timer invalidate];
-        timer = nil;
+        [self.delegate receivedServices:self->services];
+        [self->timer invalidate];
+        self->timer = nil;
     }];
     [NSRunLoop.mainRunLoop addTimer:timer forMode:NSRunLoopCommonModes];
 }

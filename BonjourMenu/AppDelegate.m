@@ -64,7 +64,7 @@
     [hostNames enumerateObjectsUsingBlock:^(NSString * _Nonnull hostName, NSUInteger idx_hostName, BOOL * _Nonnull stop_hostName) {
         NSMenuItem *menuItem = [mainStatusItem.menu addItemWithTitle:hostName action:nil keyEquivalent:@""];
         NSString *image = browser.deviceMap[[services filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSNetService *device, NSDictionary<NSString *,id> * _Nullable bindings) {
-            return [device.hostName isEqualToString:hostName] && browser.deviceMap[device.name] != nil;
+            return [device.hostName isEqualToString:hostName] && self->browser.deviceMap[device.name] != nil;
         }]].firstObject.name];
         [menuItem fp_imageString:image];
         menuItem.submenu = NSMenu.new;
