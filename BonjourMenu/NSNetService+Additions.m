@@ -81,7 +81,7 @@
     if(!decl) return nil;
     CFStringRef icon = CFDictionaryGetValue(decl, @"_LSIconPath");
     while(icon == nil && uti != nil) {
-        CFArrayRef utis = CFDictionaryGetValue(decl, @"UTTypeConformsTo");
+        CFArrayRef utis = CFDictionaryGetValue(decl, kUTTypeConformsToKey);
         for(CFIndex i = 0; i<CFArrayGetCount(utis); i++) {
             uti = CFArrayGetValueAtIndex(utis, i);
             decl = CFAutorelease(UTTypeCopyDeclaration(uti));
