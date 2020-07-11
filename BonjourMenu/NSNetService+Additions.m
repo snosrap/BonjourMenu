@@ -76,6 +76,7 @@
     NSString *model = self.fp_TXTRecord[@"model"];
     if(!model) return nil;
     CFStringRef uti = CFAutorelease(UTTypeCreatePreferredIdentifierForTag((__bridge CFStringRef)@"com.apple.device-model-code", (__bridge CFStringRef)model, nil));
+    if(!uti) return nil;
     CFDictionaryRef decl = CFAutorelease(UTTypeCopyDeclaration(uti));
     if(!decl) return nil;
     CFStringRef icon = CFDictionaryGetValue(decl, @"_LSIconPath");
@@ -88,6 +89,7 @@
             if(icon != nil) break;
         }
     }
+    if(!uti) return nil;
     CFURLRef url = CFAutorelease(UTTypeCopyDeclaringBundleURL(uti));
     CFStringRef path = CFAutorelease(CFURLCopyPath(url));
     NSString *iconPath = [(__bridge NSString *)path stringByAppendingPathComponent:(__bridge NSString *)icon];
