@@ -71,6 +71,7 @@
     return [NSString stringWithFormat:@"%@.%@.", self.name, [self.type componentsSeparatedByString:@"."].firstObject];
 }
 // http://cocoadev.github.io/GettingTheIconOfNetworkMachinesTypes/
+// TODO: http://www.openradar.me/30927725
 - (NSString *)fp_model {
     // Uses undocumented _LSIconPath. kUTTypeIconFileKey doesn't seem to exist any more and when it does, it lacks `/Contents/Resources/` and isn't found in CoreTypes
     NSString *model = self.fp_TXTRecord[@"model"];
@@ -100,6 +101,7 @@
 @implementation NSNetService (FPMenuAddtions)
 - (NSMenuItem *)fp_menuItem:(SEL)action {
     NSMenuItem *menuItem = [NSMenuItem fp_itemWithTitle:self.name URL:self.fp_URL type:self.type action:action];
+    //menuItem.toolTip = [NSString stringWithFormat:@"%@:%lu\n%@:%lu\n[%@]:%lu", self.hostName, self.port, self.fp_ipv4?:@"", self.port, self.fp_ipv6?:@"", self.port];
     if([self.type isEqualToString:@"_adisk._tcp."]) {
         menuItem.submenu = [self fp_submenuItems:action];
     }
